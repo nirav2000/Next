@@ -18,4 +18,10 @@ The app is local-first. Cloud sync uses `families/{OWNER_UID}/learners/sai/progr
 
 Cloudflare/R2 is already used by the shared monitoring stack. Learning content is not copied to R2 in v1 because Firestore is the appropriate structured cross-device store; media/R2 can be added when lesson attachments require it.
 
-Version: 2026.09.25.1
+## Direct publishing from ChatGPT
+
+Published lessons are source-controlled under `lessons/`. When ChatGPT has authorised GitHub access, it can publish a lesson directly to `main`; Next checks the catalog and imports it automatically while preserving learner progress. See `PUBLISHING.md`.
+
+The initial French lesson is published at `lessons/french-quitter-20260926.json`.
+
+Version: 2026.09.25.2

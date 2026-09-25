@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "id": "french-quitter-20260926",
+  "title": "How French verbs change",
+  "subject": "French",
+  "summary": "Rebuild “Je quitte…” from first principles: word forms, infinitives, subjects and conjugation.",
+  "createdAt": "2026-09-25T21:00:00.000Z",
+  "expectedDate": "2026-09-26",
+  "estimatedMinutes": 15,
+  "contentHtml": "<section><p class=\"eyebrow\">Start in English</p><h2>1. What does “form” mean?</h2><p>A <strong>word</strong> can have different <strong>forms</strong>. It is still the same core word, but its shape changes to carry extra information.</p><table><tr><th>Form</th><th>What it tells us</th></tr><tr><td>play</td><td>basic present form</td></tr><tr><td>plays</td><td>the subject is he/she/it</td></tr><tr><td>played</td><td>the action happened in the past</td></tr><tr><td>playing</td><td>the action is ongoing / used as -ing form</td></tr></table><blockquote>Ask Sai: “Are these four completely unrelated words, or different forms of PLAY?”</blockquote></section><section><p class=\"eyebrow\">A change he already knows</p><h2>2. English conjugates too</h2><p>Try <strong>to be</strong>: I <strong>am</strong>, you <strong>are</strong>, he <strong>is</strong>. The verb changes depending on its subject.</p><p>Then use an ordinary verb: <strong>I leave</strong>, but <strong>he leaves</strong>. English does this less than French, but Sai already uses conjugation every day.</p><blockquote><strong>Subject</strong> = who is doing it.<br><strong>Verb</strong> = the action or state.<br><strong>Conjugate</strong> = put the verb into the form needed in that sentence.</blockquote></section><section><p class=\"eyebrow\">Why bother?</p><h2>3. A changing word carries information</h2><p>Language needs to tell us things such as <em>who</em> acted and <em>when</em>. Languages package that information differently. English often relies heavily on pronouns and word order; French retains more verb forms.</p><blockquote>Key idea: changing a word is not decoration. Its form can carry grammatical information.</blockquote></section><section><p class=\"eyebrow\">Now French</p><h2>4. Infinitive → conjugated form</h2><p><strong>quitter</strong> = to leave. This is the <strong>infinitive</strong>, the basic dictionary form.</p><p>We do not normally say <em>je quitter</em> for “I leave”. For the subject <strong>je</strong>, we need <strong>je quitte</strong>.</p></section><section><p class=\"eyebrow\">French Lego</p><h2>5. Reconstruct the sentence</h2><p><strong>WHO</strong> → <em>Je</em>. <strong>ACTION</strong> → <em>quitte</em>. <strong>WHAT</strong> → <em>le cours de français</em>. <strong>DESTINATION</strong> → <em>pour un cours de basson</em>. <strong>WHEN</strong> → <em>à neuf heures</em>.</p><blockquote><strong>Je quitte le cours de français pour un cours de basson à neuf heures.</strong></blockquote></section><section><p class=\"eyebrow\">Prove he understands</p><h2>6. Change one Lego block</h2><p>Make it ten o’clock, change bassoon to piano, then French to maths. Finally remove the model and write the whole sentence.</p><p>Finish with: “Which word is the subject? Which is the verb? What is its infinitive? Why did its form change?”</p></section>",
+  "cards": [
+    {"id":"form","front":"What is a word form?","back":"A version of a word whose shape changes to do a grammatical job."},
+    {"id":"infinitive","front":"What is the infinitive?","back":"The basic dictionary form of a verb, e.g. quitter = to leave."},
+    {"id":"subject","front":"What is the subject?","back":"The person or thing doing the action or being described."},
+    {"id":"conjugate","front":"What does conjugate mean?","back":"Put a verb into the form required for its subject, tense, etc."},
+    {"id":"quitter","front":"quitter → je ___","back":"quitte"},
+    {"id":"lesson","front":"How do you build “French lesson”?","back":"le cours de français"},
+    {"id":"time","front":"How do you say “at nine o’clock”?","back":"à neuf heures"}
+  ]
+}
