@@ -1,1 +1,18 @@
-{"schema":1,"updatedAt":"2026-09-25T22:00:00+01:00","lessons":[{"id":"french-quitter-20260926","path":"lessons/french-quitter-20260926.json","revision":1,"publishedAt":"2026-09-25T22:00:00+01:00"}]}
+{
+  "schema": 1,
+  "updatedAt": "2026-09-26T07:35:00+01:00",
+  "lessons": [
+    {
+      "id": "french-quitter-20260926",
+      "path": "lessons/french-quitter-20260926.json",
+      "revision": 1,
+      "publishedAt": "2026-09-25T22:00:00+01:00"
+    },
+    {
+      "id": "answer-reason-explanation-20260927",
+      "path": "lessons/answer-reason-explanation-20260927.json",
+      "revision": 1,
+      "publishedAt": "2026-09-26T07:35:00+01:00"
+    }
+  ]
+}
