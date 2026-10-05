@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "id": "french-animal-opinions-homework-20261005",
+  "title": "French homework · Animal opinions",
+  "subject": "French",
+  "summary": "Understand the opinion symbols, build each sentence from reusable blocks, then write Ahmed, Ethan and Sophie’s answers.",
+  "createdAt": "2026-10-05T13:03:00+01:00",
+  "expectedDate": "",
+  "estimatedMinutes": 20,
+  "contentHtml": "<section class=\"homework-note\"><p class=\"eyebrow\">Your homework</p><h2>What are you actually being asked to do?</h2><p>For each person, write <strong>a couple of sentences</strong>. Start by saying the person's name with <strong>Je m’appelle…</strong>. Then describe their opinions of the pictured animals. Use <strong>mais</strong> (but) and <strong>et</strong> (and) to connect ideas.</p><blockquote>Don't copy the model answers first. Work from the pictures and the sentence-building rules below.</blockquote></section><section><p class=\"eyebrow\">Decode the pictures</p><h2>1. The hearts are a strength scale</h2><table><tr><th>Picture</th><th>French</th><th>Meaning</th></tr><tr><td>❤️❤️</td><td><strong>J’adore…</strong></td><td>I love…</td></tr><tr><td>❤️</td><td><strong>J’aime…</strong></td><td>I like…</td></tr><tr><td>💔 / crossed heart</td><td><strong>Je n’aime pas…</strong></td><td>I don't like…</td></tr><tr><td>two crossed hearts</td><td><strong>Je déteste…</strong></td><td>I hate…</td></tr></table><p>Notice that <strong>ne … pas</strong> wraps around the verb in <em>je n’aime pas</em>. The <em>e</em> of <strong>ne</strong> disappears before the vowel in <strong>aime</strong>: <em>ne aime</em> → <strong>n’aime</strong>.</p></section><section><p class=\"eyebrow\">The reusable pattern</p><h2>2. Build, don't memorise</h2><div class=\"sentence-builder\"><span>Je m’appelle</span><span>NAME.</span><span>OPINION</span><span>ANIMAL</span><span>mais / et …</span></div><p><strong>Je m’appelle Ahmed.</strong> is literally “I call myself Ahmed”, but naturally means “My name is Ahmed.” Even though you are writing about Ahmed, the worksheet asks you to write <em>as if you are Ahmed</em>, so the subject remains <strong>je</strong>.</p><p>Then choose an opinion and animal: <strong>J’aime les chiens.</strong> Add a contrasting opinion with <strong>mais</strong>: <strong>J’aime les chiens mais je n’aime pas les poissons.</strong></p></section><section><p class=\"eyebrow\">Animals</p><h2>3. Retrieve the vocabulary</h2><table><tr><td>🐶</td><td><strong>les chiens</strong></td><td>dogs</td></tr><tr><td>🐟</td><td><strong>les poissons</strong></td><td>fish</td></tr><tr><td>🐭</td><td><strong>les souris</strong></td><td>mice</td></tr><tr><td>🐱</td><td><strong>les chats</strong></td><td>cats</td></tr><tr><td>🐴</td><td><strong>les chevaux</strong></td><td>horses</td></tr><tr><td>🐦</td><td><strong>les oiseaux</strong></td><td>birds</td></tr></table><p>These are plural groups of animals, so the worksheet uses <strong>les</strong> = “the”.</p></section><section><p class=\"eyebrow\">Connect the ideas</p><h2>4. et or mais?</h2><p><strong>et</strong> = and. Use it when you are simply adding another idea.</p><p><strong>mais</strong> = but. Use it when the second idea contrasts with the first: <em>I like dogs <strong>but</strong> I don't like fish.</em></p><blockquote>Before writing the French, say the meaning in English. Then build it block by block.</blockquote></section><section><p class=\"eyebrow\">Worked example</p><h2>5. Chantal</h2><p>The sheet gives: <strong>Je m’appelle Chantal. J’adore les oiseaux mais je déteste les oiseaux.</strong></p><p><strong>Check the picture carefully:</strong> it appears to show Chantal loves <em>birds</em> but hates <em>fish</em>. If so, the printed example contains a typo and logically should end <strong>je déteste les poissons</strong>. Ask the teacher if the original sheet is clearer.</p></section><section><p class=\"eyebrow\">Final check</p><h2>6. Before you copy it onto the worksheet</h2><p>For every person ask: Did I start with <strong>Je m’appelle + name</strong>? Did I match the number/crossing of hearts to the right opinion? Did I use the right animal word? Did I use <strong>et</strong> or <strong>mais</strong> sensibly? Did I include capitals and full stops?</p></section>",
+  "practice": [
+    {
+      "id": "ahmed",
+      "name": "Ahmed",
+      "prompt": "Ahmed · write his two sentences",
+      "cues": [
+        "❤️ dogs → j’aime",
+        "💔 fish → je n’aime pas",
+        "Use mais for the contrast"
+      ],
+      "model": "Je m’appelle Ahmed. J’aime les chiens mais je n’aime pas les poissons."
+    },
+    {
+      "id": "ethan",
+      "name": "Ethan",
+      "prompt": "Ethan · write his two sentences",
+      "cues": [
+        "💔 dogs → je n’aime pas",
+        "two crossed hearts mice → je déteste",
+        "Use et to add the second negative opinion"
+      ],
+      "model": "Je m’appelle Ethan. Je n’aime pas les chiens et je déteste les souris."
+    },
+    {
+      "id": "sophie",
+      "name": "Sophie",
+      "prompt": "Sophie · write her two sentences",
+      "cues": [
+        "❤️❤️ cats → j’adore",
+        "💔 horses → je n’aime pas",
+        "Use mais for the contrast"
+      ],
+      "model": "Je m’appelle Sophie. J’adore les chats mais je n’aime pas les chevaux."
+    }
+  ],
+  "cards": [
+    {
+      "id": "op-love",
+      "front": "❤️❤️ means which French opinion?",
+      "back": "J’adore… = I love…"
+    },
+    {
+      "id": "op-like",
+      "front": "❤️ means which French opinion?",
+      "back": "J’aime… = I like…"
+    },
+    {
+      "id": "op-dislike",
+      "front": "A crossed heart means which French opinion?",
+      "back": "Je n’aime pas… = I don't like…"
+    },
+    {
+      "id": "op-hate",
+      "front": "Two crossed hearts mean which French opinion?",
+      "back": "Je déteste… = I hate…"
+    },
+    {
+      "id": "connective-mais",
+      "front": "What does mais mean, and when is it useful?",
+      "back": "but — it joins contrasting ideas."
+    },
+    {
+      "id": "connective-et",
+      "front": "What does et mean?",
+      "back": "and — it adds another idea."
+    },
+    {
+      "id": "animals",
+      "front": "dogs · fish · mice · cats · horses",
+      "back": "les chiens · les poissons · les souris · les chats · les chevaux"
+    },
+    {
+      "id": "pattern",
+      "front": "How do you begin each person's answer?",
+      "back": "Je m’appelle + name."
+    }
+  ]
+}
