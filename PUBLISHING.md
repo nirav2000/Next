@@ -31,3 +31,7 @@ A published lesson should contain:
 ## Future direct API
 
 The catalog is intentionally provider-neutral. A future authenticated endpoint can write the same lesson schema to Firestore/R2 without changing the learning UI. Repository publishing is the first direct channel because ChatGPT already has authorised GitHub access and it keeps an auditable source-of-truth history.
+
+## French course publishing
+
+The dedicated `french.html` entrypoint uses versioned shared code in `nirav2000/Apps/french-teaching/v1`. Add new curriculum data there without altering existing `Next/lessons/` records or Sai’s legacy `next-learning` Firestore document. Use the owner-scoped, immutable event evidence path described in README. Verify shared module deployment before the Next Pages link becomes visible. Never rewrite existing adult/Sai evidence from a full-document last-write-wins snapshot.

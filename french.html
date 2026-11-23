@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f7f2">
+  <meta name="description" content="Audio-led French learning through rich sentences, connectives, CUDDLES phonics and independent retrieval.">
+  <title>French · Next Learning</title>
+  <link rel="icon" href="./icon.svg">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles.css?v=2026.11.23.1">
+  <link rel="stylesheet" href="https://nirav2000.github.io/Apps/french-teaching/v1/style.css?v=1.0.0">
+  <script src="https://nirav2000.github.io/Apps/apps-pronunciation.js?v=3" defer></script>
+</head>
+<body>
+  <header class="shell" style="padding-bottom:0">
+    <a href="./" style="display:inline-flex;gap:8px;align-items:center;color:inherit;text-decoration:none;font-size:14px;font-weight:700;padding:10px 2px">← Next Learning</a>
+  </header>
+  <main id="french-course" class="ft-app" aria-label="French course"></main>
+  <script type="module">
+    import {firebaseConfig,OWNER_UID} from './firebase-config.js';
+    import {mountFrenchCourse} from 'https://nirav2000.github.io/Apps/french-teaching/v1/index.js?v=1.0.0';
+    let session=null;
+    async function connect(){
+      if(session)return session;
+      const [appSdk,authSdk,firestore]=await Promise.all([
+        import('https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js'),
+        import('https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js'),
+        import('https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js')
+      ]);
+      const app=appSdk.getApps().find(a=>a.name==='next-learning')||appSdk.initializeApp(firebaseConfig,'next-learning');
+      const auth=authSdk.getAuth(app);
+      await authSdk.setPersistence(auth,authSdk.browserLocalPersistence);
+      await auth.authStateReady();
+      session={auth,db:firestore.getFirestore(app),firestore,authSdk,ownerUid:OWNER_UID};
+      return session;
+    }
+    async function signIn(email,password){
+      const {auth,authSdk}=await connect();
+      const result=await authSdk.signInWithEmailAndPassword(auth,String(email),String(password));
+      if(result.user.uid!==OWNER_UID){
+        await authSdk.signOut(auth);
+        throw Error('This account is not authorised for family learning data.');
+      }
+    }
+    function signOut(){return connect().then(({auth,authSdk})=>authSdk.signOut(auth));}
+    try{
+      mountFrenchCourse({target:document.getElementById('french-course'),connect,signIn,signOut});
+    }catch(error){
+      document.getElementById('french-course').textContent='French lessons could not start: '+String(error.message||error);
+    }
+  </script>
+  <script>window.APP_MONITOR_APP='Next French';window.FIREBASE_USAGE_APP='next-french';window.FIREBASE_USAGE_PROJECT='kk-syllabus';</script>
+  <script src="https://nirav2000.github.io/Apps/app-monitor.js?v=5" defer></script>
+  <script src="https://nirav2000.github.io/Apps/firebase-usage-monitor.js?v=4" defer></script>
+</body>
+</html>
