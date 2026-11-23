@@ -161,6 +161,13 @@
       });
     }
     async function signInPasskey(){
+      // Do not prompt for WebAuthn if the trusted server bridge has not deployed.
+      // The fixed route returns 405 for GET without revealing a Firebase token.
+      const availability=await fetch(MONITOR_AUTH+'/owner/french/firebase-token',{
+        method:'GET',cache:'no-store',credentials:'omit'
+      }).catch(()=>null);
+      if(!availability||availability.status!==405)
+        throw Error('Secure Firebase passkey sign-in is awaiting Cloudflare configuration. Use your existing Firebase login for cloud sync meanwhile.');
       const {auth,authSdk}=await connect();
       if(auth.currentUser?.uid===OWNER_UID)return auth.currentUser;
       const client=await getPasskeyClient();

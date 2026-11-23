@@ -31,7 +31,7 @@ test('the course does not receive or emit a raw passkey token or change evidence
   assert.match(script,/mountFrenchCourse\(\{target:.*connect,signIn,signInGoogle,linkGoogle,signInPasskey,resetPassword,signOut\}\)/);
   assert.doesNotMatch(script,/X-App-Monitor-Session|FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON|private_key/);
   const sw=fs.readFileSync('sw.js','utf8');
-  assert.match(sw,/next-learning-shared-v8/);
+  assert.match(sw,/next-learning-shared-v9/);
   assert.match(sw,/french-teaching\/v1\/auth-context\.js/);
   assert.match(sw,/french-teaching\/v1\/phonics\.js/);
   assert.match(sw,/french-teaching\/v1\/lexicon\.js/);
@@ -68,4 +68,15 @@ test('passkey login preserves the parent UID, authenticates with Firebase custom
   assert.match(script,/await client\.passkeyLogin\(\)/);
   assert.match(script,/browserLocalPersistence/);
   assert.doesNotMatch(script,/signInAnonymously|createUserWithEmailAndPassword/);
+});
+
+
+test('missing Worker route is reported without asking the user to unlock their passkey',()=>{
+  const fn=script.slice(script.indexOf('async function signInPasskey(){'),
+    script.indexOf('async function resetPassword(email)'));
+  const check=fn.indexOf('availability.status!==405');
+  const prompt=fn.indexOf('client.passkeyLogin()');
+  assert.ok(check>=0 && prompt>check);
+  assert.match(fn,/method:'GET'/);
+  assert.match(fn,/await fetch\(MONITOR_AUTH\+'\/owner\/french\/firebase-token'/);
 });

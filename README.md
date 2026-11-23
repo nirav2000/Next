@@ -78,3 +78,6 @@ The French course now checks an existing authorised Firebase parent session, the
 On a device without a usable Firebase/App Monitor session, choose **Continue with App Monitor passkey** once. This is a real, server-verified authentication, not a public development backdoor. The original Firebase email/password and Google in Safari remain as fallbacks. No new database, Firestore rule, account or learner path is created, and existing Next lessons are untouched.
 
 If the bridge returns a 503 error, its Cloudflare signing service account is not yet configured for the kk-syllabus project; this should be resolved server-side without embedding credentials in GitHub Pages. All admin passkey sessions remain revocable through App Monitor. The Worker's deployment is independently gated by App Monitor's existing passkey, R2, credential and rollback tests.
+
+
+**Release gate:** A fresh passkey ceremony is not launched when the Worker route has not yet been deployed. The course first checks the existence of its fixed endpoint using GET (which must return 405 without any private token), then starts the passkey authentication. While Cloudflare's Firebase service-account secret remains unavailable, the email/password and Safari Google alternatives still work. No unauthenticated development login is ever introduced.
