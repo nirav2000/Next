@@ -44,3 +44,8 @@ The French route may reuse either the existing Next named Firebase session or th
 
 ## French phonics/grammar release
 The 2026-11-23 phonics extension adds two versioned shared modules, phonics.js and lexicon.js, in Apps/french-teaching/v1, and a Sounds tab plus optional word explorer within the existing Next/French route. Always publish tested Apps code first; then change the French page's asset version suffix, bump the Next SW cache name, and include phonics.js and lexicon.js in the existing Next PWA precache. No new app, Firebase project, profile path, login or passkey system is required.
+
+
+## French online dictionary module
+
+The shared Apps French module now imports dictionary.js for on-demand Wiktionary/Wiktapi lookups, always secondary to curated grammar explanations. On release, deploy Apps and pass shared/browser tests before bumping the French page's query-string asset version and bumping Next's SW cache name. Precache the new JS for offline graceful fallbacks. Do not introduce a paid API or weaken existing Firebase auth rules. Follow the attribution and privacy notes in Apps/french-teaching/v1/README.md.
