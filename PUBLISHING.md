@@ -54,3 +54,8 @@ The shared Apps French module now imports dictionary.js for on-demand Wiktionary
 ## iOS installed-app Google popup guard
 
 Do NOT replace this fix with Firebase signInWithRedirect without first addressing GitHub Pages cross-origin auth helper / third-party storage and device testing. Standalone iPhone Next/French must not open a Google OAuth popup: recognise Apple standalone and offer the existing Firebase owner account's email/password form with password reset. Keep both client and entrypoint guards. Google popup in Safari remains an alternative only, and browser sign-in does not guarantee Home Screen session reuse. Never move tokens via copy/paste, pass OAuth tokens through query parameters or weaken Firestore UID checks. Source details and tests: Apps/french-teaching/v1/README.md, Apps/tests/french-ios-auth-browser.mjs, and Next/tests/french-auth.test.mjs.
+
+
+### App Monitor passkey → Firebase bridge
+
+The Next French entry point now uses the reusable Apps/apps-passkey-auth.js and the App Monitor Worker route /app-monitor/owner/french/firebase-token. The Worker must validate passkey session, Origin and fixed Firebase project/owner UID before issuing a custom Firebase JWT. The front end verifies projectId and UID after signInWithCustomToken. It can silently restore a valid remembered App Monitor session or accept a fresh passkey without Firebase email/password. Any production issue in the Worker is handled by the existing staged deployment, smoke tests and rollback; never call a direct wrangler deploy. No read/write path changes or migration of other Next lessons.

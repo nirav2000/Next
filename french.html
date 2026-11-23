@@ -9,7 +9,7 @@
   <link rel="icon" href="./icon.svg">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="stylesheet" href="./styles.css?v=2026.11.23.1">
-  <link rel="stylesheet" href="https://nirav2000.github.io/Apps/french-teaching/v1/style.css?v=20261123f">
+  <link rel="stylesheet" href="https://nirav2000.github.io/Apps/french-teaching/v1/style.css?v=20261123g">
   <script src="https://nirav2000.github.io/Apps/apps-pronunciation.js?v=3" defer></script>
 </head>
 <body>
@@ -19,8 +19,60 @@
   <main id="french-course" class="ft-app" aria-label="French course"></main>
   <script type="module">
     import {firebaseConfig,OWNER_UID} from './firebase-config.js';
-    import {mountFrenchCourse} from 'https://nirav2000.github.io/Apps/french-teaching/v1/index.js?v=20261123f';
-    let session=null, connecting=null;
+    import {mountFrenchCourse} from 'https://nirav2000.github.io/Apps/french-teaching/v1/index.js?v=20261123g';
+    const MONITOR_AUTH='https://apps-monitor-api.nirav2000-github.workers.dev/app-monitor';
+    const MONITOR_SESSION='app-monitor.admin-session.v2';
+    let session=null, connecting=null,passkeyClient=null;
+    async function getPasskeyClient(){
+      if(passkeyClient)return passkeyClient;
+      // Reuse the same passkey client and revocable session as App Monitor.
+      // The Worker verifies passkey sessions before issuing Firebase tokens.
+      if(!window.AppsPasskeyAuth){
+        await import('https://nirav2000.github.io/Apps/apps-passkey-auth.js?v=1');
+      }
+      if(!window.AppsPasskeyAuth?.create)throw Error('App Monitor passkey client unavailable.');
+      passkeyClient=window.AppsPasskeyAuth.create({
+        baseUrl:MONITOR_AUTH,sessionStoreKey:MONITOR_SESSION
+      });
+      return passkeyClient;
+    }
+    async function exchangePasskeyForFirebase(client,auth,authSdk){
+      const checked=await client.validateSession();
+      if(!checked||checked.method!=='passkey')throw Error('An active App Monitor passkey session is required.');
+      const response=await fetch(MONITOR_AUTH+'/owner/french/firebase-token',{
+        method:'POST',headers:client.authHeaders(),cache:'no-store',credentials:'omit'
+      });
+      if(!response.ok){
+        if(response.status===404)throw Error('The Firebase passkey bridge is not deployed yet.');
+        if(response.status===503)throw Error('The Firebase passkey bridge needs an authorised kk-syllabus signing account.');
+        if(response.status===401||response.status===403)throw Error('Your App Monitor passkey session expired. Sign in again with your passkey.');
+        throw Error('Passkey Firebase sign-in is unavailable ('+response.status+').');
+      }
+      const details=await response.json();
+      if(details.projectId!==firebaseConfig.projectId||details.projectId!=='kk-syllabus'||
+        typeof details.customToken!=='string'||details.customToken.length<100)
+        throw Error('The passkey bridge returned an invalid Firebase credential.');
+      const credential=await authSdk.signInWithCustomToken(auth,details.customToken);
+      if(credential.user.uid!==OWNER_UID){
+        await authSdk.signOut(auth);
+        throw Error('The Firebase user does not match the existing parent account.');
+      }
+      return credential.user;
+    }
+    async function restorePasskeyFirebase(auth,authSdk){
+      if(auth.currentUser)return false;
+      let client;
+      try{
+        client=await getPasskeyClient();
+        if(!client.restoreSession())return false;
+        await exchangePasskeyForFirebase(client,auth,authSdk);
+        return true;
+      }catch{
+        // Never treat an expired/invalid App Monitor session as Firebase auth.
+        // Keep the regular login/passkey button available.
+        return false;
+      }
+    }
     async function connect(){
       if(session)return session;
       if(connecting)return connecting;
@@ -49,6 +101,7 @@
         const chosen=entries.find(e=>e.auth.currentUser?.uid===OWNER_UID)
           ||entries.find(e=>e.app.name==='[DEFAULT]')||entries[0];
         session={auth:chosen.auth,db:firestore.getFirestore(chosen.app),firestore,authSdk,ownerUid:OWNER_UID,appName:chosen.app.name};
+        if(!chosen.auth.currentUser)await restorePasskeyFirebase(chosen.auth,authSdk);
         return session;
       })().catch(error=>{connecting=null;throw error});
       return connecting;
@@ -107,13 +160,26 @@
         return credential.user;
       });
     }
+    async function signInPasskey(){
+      const {auth,authSdk}=await connect();
+      if(auth.currentUser?.uid===OWNER_UID)return auth.currentUser;
+      const client=await getPasskeyClient();
+      const restored=client.restoreSession();
+      let verified=null;
+      if(restored)verified=await client.validateSession().catch(()=>null);
+      if(!verified||verified.method!=='passkey'){
+        const result=await client.passkeyLogin();
+        if(result.method!=='passkey')throw Error('A verified App Monitor passkey is required.');
+      }
+      return exchangePasskeyForFirebase(client,auth,authSdk);
+    }
     async function resetPassword(email){
       const {auth,authSdk}=await connect();
       await authSdk.sendPasswordResetEmail(auth,String(email||'').trim());
     }
     function signOut(){return connect().then(({auth,authSdk})=>authSdk.signOut(auth));}
     try{
-      mountFrenchCourse({target:document.getElementById('french-course'),connect,signIn,signInGoogle,linkGoogle,resetPassword,signOut});
+      mountFrenchCourse({target:document.getElementById('french-course'),connect,signIn,signInGoogle,linkGoogle,signInPasskey,resetPassword,signOut});
     }catch(error){
       document.getElementById('french-course').textContent='French lessons could not start: '+String(error.message||error);
     }

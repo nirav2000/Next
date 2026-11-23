@@ -28,14 +28,15 @@ test('Google linking retains the original owner UID and cannot silently relabel 
   assert.doesNotMatch(script,/signInAnonymously/);
 });
 test('the course does not receive or emit a raw passkey token or change evidence document paths',()=>{
-  assert.match(script,/mountFrenchCourse\(\{target:.*connect,signIn,signInGoogle,linkGoogle,resetPassword,signOut\}\)/);
-  assert.doesNotMatch(script,/X-App-Monitor-Session|passkeyLogin|FIREBASE_ADMIN/);
+  assert.match(script,/mountFrenchCourse\(\{target:.*connect,signIn,signInGoogle,linkGoogle,signInPasskey,resetPassword,signOut\}\)/);
+  assert.doesNotMatch(script,/X-App-Monitor-Session|FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON|private_key/);
   const sw=fs.readFileSync('sw.js','utf8');
-  assert.match(sw,/next-learning-shared-v7/);
+  assert.match(sw,/next-learning-shared-v8/);
   assert.match(sw,/french-teaching\/v1\/auth-context\.js/);
   assert.match(sw,/french-teaching\/v1\/phonics\.js/);
   assert.match(sw,/french-teaching\/v1\/lexicon\.js/);
   assert.match(sw,/french-teaching\/v1\/dictionary\.js/);
+  assert.match(sw,/Apps\/apps-passkey-auth\.js/);
 });
 
 
@@ -51,4 +52,20 @@ test('iOS standalone Google popup and linking are both blocked before Firebase O
   assert.match(link,/requireSafeGooglePopup\(\)/);
   assert.match(script,/sendPasswordResetEmail\(auth,String\(email\|\|''\)\.trim\(\)\)/);
   assert.match(script,/if\(credential\.user\.uid!==OWNER_UID\)/);
+});
+
+
+test('passkey login preserves the parent UID, authenticates with Firebase custom token and is not a guest bypass',()=>{
+  assert.match(script,/app-monitor\.admin-session\.v2/);
+  assert.match(script,/async function exchangePasskeyForFirebase/);
+  assert.match(script,/checked\.method!=='passkey'/);
+  assert.match(script,/\/owner\/french\/firebase-token/);
+  assert.match(script,/signInWithCustomToken\(auth,details\.customToken\)/);
+  assert.match(script,/credential\.user\.uid!==OWNER_UID/);
+  assert.match(script,/await authSdk\.signOut\(auth\)/);
+  assert.match(script,/async function restorePasskeyFirebase/);
+  assert.match(script,/await restorePasskeyFirebase\(chosen\.auth,authSdk\)/);
+  assert.match(script,/await client\.passkeyLogin\(\)/);
+  assert.match(script,/browserLocalPersistence/);
+  assert.doesNotMatch(script,/signInAnonymously|createUserWithEmailAndPassword/);
 });

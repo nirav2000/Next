@@ -69,3 +69,12 @@ In the user's 26-second iPhone screen recording, the standalone Next/French app 
 **Fix:** On iOS installed Home Screen/standalone PWAs, the French course no longer offers or attempts signInWithPopup or linkWithPopup. The French module checks iOS standalone mode and the Next entrypoint has the same guard, preserving the protected Firebase owner UID. Show the existing email/password form expanded by default; allow a Firebase password-reset email, and a copy-link control for opening the course in Safari. Browser Safari still offers Google OAuth, but its session may not carry into the standalone app. There is no Firebase data migration, worker update or sign-in scope expansion. A seamless App Monitor passkey-to-Firebase bridge remains a separate future security architecture.
 
 Verification: Apps tests/french-ios-auth-browser.mjs tests this mode with iPhone UA and standalone browser emulation, including avoidance of the Google button, password reset and owner sign-in. Next tests/french-auth.test.mjs asserts the entrypoint's independent guard and the new PWA cache. Testing actual Apple password/passkey UI requires the user to retest the installed Next app after reopening it.
+
+
+### Cross-device development without repeated passwords — 23 November 2026
+
+The French course now checks an existing authorised Firebase parent session, then optionally restores a valid App Monitor passkey session from the same origin. A secure Cloudflare Worker route exchanges this verified passkey session for a short-lived custom Firebase token restricted to the existing kk-syllabus parent UID. Firebase's existing browser-local persistence and Learning Evidence sync then work normally, allowing your progress to reappear when you sign in on iPhone, iPad or Mac.
+
+On a device without a usable Firebase/App Monitor session, choose **Continue with App Monitor passkey** once. This is a real, server-verified authentication, not a public development backdoor. The original Firebase email/password and Google in Safari remain as fallbacks. No new database, Firestore rule, account or learner path is created, and existing Next lessons are untouched.
+
+If the bridge returns a 503 error, its Cloudflare signing service account is not yet configured for the kk-syllabus project; this should be resolved server-side without embedding credentials in GitHub Pages. All admin passkey sessions remain revocable through App Monitor. The Worker's deployment is independently gated by App Monitor's existing passkey, R2, credential and rollback tests.
