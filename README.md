@@ -81,3 +81,12 @@ If the bridge returns a 503 error, its Cloudflare signing service account is not
 
 
 **Release gate:** A fresh passkey ceremony is not launched when the Worker route has not yet been deployed. The course first checks the existence of its fixed endpoint using GET (which must return 405 without any private token), then starts the passkey authentication. While Cloudflare's Firebase service-account secret remains unavailable, the email/password and Safari Google alternatives still work. No unauthenticated development login is ever introduced.
+
+
+### Magic 10 guided French lessons — November 2026
+
+French v2 reuses the existing French course under /Next/french.html, not a new PWA or new Firebase account. It adds an original Magic 10 reference for eight carefully checked French verb+complement examples (present, completed past, near future, opinion, negation, ability, necessity, conditional wish), four guided lessons with repeated listening/translation, phonics cues embedded in phrases, dictation French-to-English and French transcription, scaffolded English-to-French construction, independent checks and genuinely novel sentences. Explanation tables remain optional in Word Explorer; common irregular verbs offer individually vetted past/future examples. It draws on public descriptions of Jessica Lund/Michaela's teaching and general Paul Noble repeat/build principles, without copying proprietary course content.
+
+Progress uses the same existing kk-syllabus parent UID, adult/Sai scopes, immutable Learning Evidence records and automatic Firebase syncing, with separate source refs for original v1 lessons and new guided v2 teaching markers. First-attempt results are saved separately from later hints; rehearsed answers cannot become falsely independent. Review reminders after 1, 3 and 7 days do not count as retention unless an actual unaided response occurs. The existing alphabet, Sounds, knowledge organiser, sentence workshop, pronunciation, authentication and Word Explorer remain available.
+
+Shared implementation and tests are documented in Apps/french-teaching/v1/README.md. The PWA version bump to next-learning-shared-v10 and asset URLs ending 20261123h ensure a Home Screen app refresh fetches the new shared code. Speech quality and passkey UX on real iOS devices still require on-device testing; automated Chrome tests cannot measure real learning gains.

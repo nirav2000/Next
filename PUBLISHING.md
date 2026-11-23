@@ -59,3 +59,8 @@ Do NOT replace this fix with Firebase signInWithRedirect without first addressin
 ### App Monitor passkey → Firebase bridge
 
 The Next French entry point now uses the reusable Apps/apps-passkey-auth.js and the App Monitor Worker route /app-monitor/owner/french/firebase-token. The Worker must validate passkey session, Origin and fixed Firebase project/owner UID before issuing a custom Firebase JWT. The front end verifies projectId and UID after signInWithCustomToken. It can silently restore a valid remembered App Monitor session or accept a fresh passkey without Firebase email/password. Any production issue in the Worker is handled by the existing staged deployment, smoke tests and rollback; never call a direct wrangler deploy. No read/write path changes or migration of other Next lessons.
+
+
+## Magic 10 / guided French release
+
+Deploy and verify tested Apps/french-teaching/v1/magic10.js, guided-lessons.js, guided-ui.js and the updated index.js/style.css first. Both shared unit and Chromium browser workflows must be green. Only then bump Next/french.html's versioned shared CSS/JS URLs and the Next service-worker cache name, and add all three modules to cross-origin precache. Keep the old Next app, lessons, auth and Firestore rules unchanged, and retain previous SHAs for rollback. The next physical-device check is a 10-turn practice on iPhone followed by adult-profile sync and resume on iPad, then an actual day-7 retrieval test.
