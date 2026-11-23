@@ -35,3 +35,8 @@ The catalog is intentionally provider-neutral. A future authenticated endpoint c
 ## French course publishing
 
 The dedicated `french.html` entrypoint uses versioned shared code in `nirav2000/Apps/french-teaching/v1`. Add new curriculum data there without altering existing `Next/lessons/` records or Sai’s legacy `next-learning` Firestore document. Use the owner-scoped, immutable event evidence path described in README. Verify shared module deployment before the Next Pages link becomes visible. Never rewrite existing adult/Sai evidence from a full-document last-write-wins snapshot.
+
+
+## Google sign-in / identity compatibility
+
+The French route may reuse either the existing Next named Firebase session or the default kk-syllabus parent session. It does not remap any UID or change existing Next login UI. The Google button works only if the provider is linked to the known Firebase owner UID. A different Google UID must never be authorised for evidence. Any future App Monitor passkey-to-Firebase bridge requires a verified server-side adapter and separate test, not a cosmetic sign-in flag or Firestore rules relaxation.

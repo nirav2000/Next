@@ -1,5 +1,5 @@
 self.APPS_PWA_CONFIG={
-  cacheName:'next-learning-shared-v3',
+  cacheName:'next-learning-shared-v4',
   cachePrefix:'next-learning-',
   defaultStrategy:'network-first',
   precache:['./','./index.html','./styles.css','./notes.css','./app.js','./notes.js','./firebase-config.js','./icon.svg','./manifest.webmanifest','./lessons/catalog.json','./lessons/french-quitter-20260926.json','./lessons/french-animal-opinions-homework-20261005.json','./french.html','https://nirav2000.github.io/Apps/french-teaching/v1/index.js','https://nirav2000.github.io/Apps/french-teaching/v1/data.js','https://nirav2000.github.io/Apps/french-teaching/v1/style.css','https://nirav2000.github.io/Apps/learning-evidence/v1/index.js','https://nirav2000.github.io/Apps/learning-evidence/v1/firestore-cloud.js']

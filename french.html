@@ -9,7 +9,7 @@
   <link rel="icon" href="./icon.svg">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="stylesheet" href="./styles.css?v=2026.11.23.1">
-  <link rel="stylesheet" href="https://nirav2000.github.io/Apps/french-teaching/v1/style.css?v=20261123b">
+  <link rel="stylesheet" href="https://nirav2000.github.io/Apps/french-teaching/v1/style.css?v=20261123c">
   <script src="https://nirav2000.github.io/Apps/apps-pronunciation.js?v=3" defer></script>
 </head>
 <body>
@@ -19,33 +19,79 @@
   <main id="french-course" class="ft-app" aria-label="French course"></main>
   <script type="module">
     import {firebaseConfig,OWNER_UID} from './firebase-config.js';
-    import {mountFrenchCourse} from 'https://nirav2000.github.io/Apps/french-teaching/v1/index.js?v=20261123b';
-    let session=null;
+    import {mountFrenchCourse} from 'https://nirav2000.github.io/Apps/french-teaching/v1/index.js?v=20261123c';
+    let session=null, connecting=null;
     async function connect(){
       if(session)return session;
-      const [appSdk,authSdk,firestore]=await Promise.all([
-        import('https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js'),
-        import('https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js'),
-        import('https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js')
-      ]);
-      const app=appSdk.getApps().find(a=>a.name==='next-learning')||appSdk.initializeApp(firebaseConfig,'next-learning');
-      const auth=authSdk.getAuth(app);
-      await authSdk.setPersistence(auth,authSdk.browserLocalPersistence);
-      await auth.authStateReady();
-      session={auth,db:firestore.getFirestore(app),firestore,authSdk,ownerUid:OWNER_UID};
-      return session;
+      if(connecting)return connecting;
+      connecting=(async()=>{
+        const [appSdk,authSdk,firestore]=await Promise.all([
+          import('https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js'),
+          import('https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js'),
+          import('https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js')
+        ]);
+        // The existing Next session uses a named Firebase app. Most other family
+        // learning apps use the default app. Reuse either verified owner session;
+        // never silently remap UIDs or replace the old Next credentials.
+        const apps=appSdk.getApps();
+        const named=apps.find(a=>a.name==='next-learning')||appSdk.initializeApp(firebaseConfig,'next-learning');
+        const existingDefault=apps.find(a=>a.name==='[DEFAULT]');
+        const shared=existingDefault
+          ?(existingDefault.options.projectId===firebaseConfig.projectId?existingDefault:null)
+          :appSdk.initializeApp(firebaseConfig);
+        const candidates=[shared,named].filter(Boolean);
+        const entries=await Promise.all(candidates.map(async app=>{
+          const auth=authSdk.getAuth(app);
+          await authSdk.setPersistence(auth,authSdk.browserLocalPersistence);
+          await auth.authStateReady();
+          return {app,auth};
+        }));
+        const chosen=entries.find(e=>e.auth.currentUser?.uid===OWNER_UID)
+          ||entries.find(e=>e.app.name==='[DEFAULT]')||entries[0];
+        session={auth:chosen.auth,db:firestore.getFirestore(chosen.app),firestore,authSdk,ownerUid:OWNER_UID,appName:chosen.app.name};
+        return session;
+      })().catch(error=>{connecting=null;throw error});
+      return connecting;
     }
     async function signIn(email,password){
       const {auth,authSdk}=await connect();
       const result=await authSdk.signInWithEmailAndPassword(auth,String(email),String(password));
       if(result.user.uid!==OWNER_UID){
         await authSdk.signOut(auth);
-        throw Error('This account is not authorised for family learning data.');
+        throw Error('This account is not authorised for the family learning records.');
       }
+    }
+    function signInGoogle(){
+      if(!session)return Promise.reject(Error('Firebase is still starting. Please try again.'));
+      // Open the provider popup synchronously within the real click, particularly
+      // important on iOS Safari. Do not await connect() before opening it.
+      const {auth,authSdk}=session;
+      const promise=authSdk.signInWithPopup(auth,new authSdk.GoogleAuthProvider());
+      return promise.then(async credential=>{
+        if(credential.user.uid!==OWNER_UID){
+          await authSdk.signOut(auth);
+          throw Error('This Google account is not linked to your existing parent Firebase account. Sign in with the parent Firebase password first and link Google from the account panel. No learner records were moved.');
+        }
+        return credential.user;
+      });
+    }
+    function linkGoogle(){
+      if(!session?.auth.currentUser||session.auth.currentUser.uid!==OWNER_UID)
+        return Promise.reject(Error('Sign in with your existing parent Firebase account first.'));
+      const {auth,authSdk}=session;
+      if(auth.currentUser.providerData.some(p=>p.providerId==='google.com'))
+        return Promise.resolve(auth.currentUser);
+      // Link, never replace or merge the established parent UID.
+      const expected=auth.currentUser.uid;
+      return authSdk.linkWithPopup(auth.currentUser,new authSdk.GoogleAuthProvider()).then(credential=>{
+        if(credential.user.uid!==expected||credential.user.uid!==OWNER_UID)
+          throw Error('Google linking did not preserve the parent UID.');
+        return credential.user;
+      });
     }
     function signOut(){return connect().then(({auth,authSdk})=>authSdk.signOut(auth));}
     try{
-      mountFrenchCourse({target:document.getElementById('french-course'),connect,signIn,signOut});
+      mountFrenchCourse({target:document.getElementById('french-course'),connect,signIn,signInGoogle,linkGoogle,signOut});
     }catch(error){
       document.getElementById('french-course').textContent='French lessons could not start: '+String(error.message||error);
     }

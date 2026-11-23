@@ -37,3 +37,12 @@ Cloud saving requires signing into the existing family Firebase account; verify 
 ### French sentence workshop release
 
 A dedicated Sentence workshop tab builds 80 controlled combinations from reusable connectives: reasons, contrasts, consequences, conditions and sequences. A separate unseen task bank measures transfer. Visible model assistance is recorded as a worked-example support level, not independence. The Shared French browser smoke CI covers mobile-width alphabet, grid, workshop, score and adult/Sai isolation; actual iOS/real Firebase acceptance remains a manual check.
+
+
+### French login integration, 23 November 2026
+
+French now reuses the existing owner-verified Firebase Auth UID from **either** the default kk-syllabus app (used by other learning apps) **or** Next's previous named Firebase app, with no Firestore migration or App Monitor Worker changes. The same protected owner UID remains required for cloud sync. When there is no recognised owner session, the course offers a Google sign-in button plus the existing Firebase email/password fallback. Google sign-in must return the existing owner UID; otherwise the browser signs out and does not access family learning records.
+
+For a pre-existing Firebase email/password owner, sign in with that account first and select "Link Google to this account". Provider linking must preserve the original UID; do not create a separate new owner or merge records. Google OAuth must be enabled in the kk-syllabus Firebase Auth providers (and the GitHub Pages domain authorised). A real signed-in Safari test is required. The App Monitor passkey is currently not an equivalent Firebase login for this course; implementation of a secure scoped bridge requires a separate backend deployment and security review.
+
+See Apps/french-teaching/v1/README.md for details of the new shared course UI and browser auth tests. Apps/auth/v1/README.md remains the migration reference for a future unified identity broker; we have NOT migrated the UID, shared Worker or existing Next login.

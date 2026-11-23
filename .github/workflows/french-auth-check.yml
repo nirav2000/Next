@@ -1,0 +1,26 @@
+name: French authentication contract
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'french.html'
+      - 'sw.js'
+      - 'tests/french-auth.test.mjs'
+      - '.github/workflows/french-auth-check.yml'
+  pull_request:
+    paths:
+      - 'french.html'
+      - 'sw.js'
+      - 'tests/french-auth.test.mjs'
+      - '.github/workflows/french-auth-check.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/french-auth.test.mjs
