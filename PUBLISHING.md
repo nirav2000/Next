@@ -49,3 +49,8 @@ The 2026-11-23 phonics extension adds two versioned shared modules, phonics.js a
 ## French online dictionary module
 
 The shared Apps French module now imports dictionary.js for on-demand Wiktionary/Wiktapi lookups, always secondary to curated grammar explanations. On release, deploy Apps and pass shared/browser tests before bumping the French page's query-string asset version and bumping Next's SW cache name. Precache the new JS for offline graceful fallbacks. Do not introduce a paid API or weaken existing Firebase auth rules. Follow the attribution and privacy notes in Apps/french-teaching/v1/README.md.
+
+
+## iOS installed-app Google popup guard
+
+Do NOT replace this fix with Firebase signInWithRedirect without first addressing GitHub Pages cross-origin auth helper / third-party storage and device testing. Standalone iPhone Next/French must not open a Google OAuth popup: recognise Apple standalone and offer the existing Firebase owner account's email/password form with password reset. Keep both client and entrypoint guards. Google popup in Safari remains an alternative only, and browser sign-in does not guarantee Home Screen session reuse. Never move tokens via copy/paste, pass OAuth tokens through query parameters or weaken Firestore UID checks. Source details and tests: Apps/french-teaching/v1/README.md, Apps/tests/french-ios-auth-browser.mjs, and Next/tests/french-auth.test.mjs.

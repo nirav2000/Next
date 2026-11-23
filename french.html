@@ -9,7 +9,7 @@
   <link rel="icon" href="./icon.svg">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="stylesheet" href="./styles.css?v=2026.11.23.1">
-  <link rel="stylesheet" href="https://nirav2000.github.io/Apps/french-teaching/v1/style.css?v=20261123e">
+  <link rel="stylesheet" href="https://nirav2000.github.io/Apps/french-teaching/v1/style.css?v=20261123f">
   <script src="https://nirav2000.github.io/Apps/apps-pronunciation.js?v=3" defer></script>
 </head>
 <body>
@@ -19,7 +19,7 @@
   <main id="french-course" class="ft-app" aria-label="French course"></main>
   <script type="module">
     import {firebaseConfig,OWNER_UID} from './firebase-config.js';
-    import {mountFrenchCourse} from 'https://nirav2000.github.io/Apps/french-teaching/v1/index.js?v=20261123e';
+    import {mountFrenchCourse} from 'https://nirav2000.github.io/Apps/french-teaching/v1/index.js?v=20261123f';
     let session=null, connecting=null;
     async function connect(){
       if(session)return session;
@@ -61,7 +61,24 @@
         throw Error('This account is not authorised for the family learning records.');
       }
     }
+    function isInstalledIOSApp(){
+      const nav=window.navigator||{};
+      const appleMobile=/iPhone|iPad|iPod/i.test(nav.userAgent||'')||
+        (nav.platform==='MacIntel'&&Number(nav.maxTouchPoints)>1);
+      let standalone=nav.standalone===true;
+      try{standalone=standalone||!!window.matchMedia?.('(display-mode: standalone)')?.matches;}catch{}
+      return !!(appleMobile&&standalone);
+    }
+    function requireSafeGooglePopup(){
+      if(isInstalledIOSApp()){
+        const error=Error('Google sign-in is unavailable in this installed iPhone app. Use the existing Firebase password or open the course in Safari.');
+        error.code='auth/unsupported-standalone';
+        throw error;
+      }
+    }
     function signInGoogle(){
+      // Defence in depth: also enforced by the visible French sign-in interface.
+      requireSafeGooglePopup();
       if(!session)return Promise.reject(Error('Firebase is still starting. Please try again.'));
       // Open the provider popup synchronously within the real click, particularly
       // important on iOS Safari. Do not await connect() before opening it.
@@ -76,6 +93,7 @@
       });
     }
     function linkGoogle(){
+      requireSafeGooglePopup();
       if(!session?.auth.currentUser||session.auth.currentUser.uid!==OWNER_UID)
         return Promise.reject(Error('Sign in with your existing parent Firebase account first.'));
       const {auth,authSdk}=session;
@@ -89,9 +107,13 @@
         return credential.user;
       });
     }
+    async function resetPassword(email){
+      const {auth,authSdk}=await connect();
+      await authSdk.sendPasswordResetEmail(auth,String(email||'').trim());
+    }
     function signOut(){return connect().then(({auth,authSdk})=>authSdk.signOut(auth));}
     try{
-      mountFrenchCourse({target:document.getElementById('french-course'),connect,signIn,signInGoogle,linkGoogle,signOut});
+      mountFrenchCourse({target:document.getElementById('french-course'),connect,signIn,signInGoogle,linkGoogle,resetPassword,signOut});
     }catch(error){
       document.getElementById('french-course').textContent='French lessons could not start: '+String(error.message||error);
     }
