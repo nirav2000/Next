@@ -30,5 +30,8 @@ test('Google linking retains the original owner UID and cannot silently relabel 
 test('the course does not receive or emit a raw passkey token or change evidence document paths',()=>{
   assert.match(script,/mountFrenchCourse\(\{target:.*connect,signIn,signInGoogle,linkGoogle,signOut\}\)/);
   assert.doesNotMatch(script,/X-App-Monitor-Session|passkeyLogin|FIREBASE_ADMIN/);
-  assert.match(fs.readFileSync('sw.js','utf8'),/next-learning-shared-v4/);
+  const sw=fs.readFileSync('sw.js','utf8');
+  assert.match(sw,/next-learning-shared-v5/);
+  assert.match(sw,/french-teaching\/v1\/phonics\.js/);
+  assert.match(sw,/french-teaching\/v1\/lexicon\.js/);
 });
