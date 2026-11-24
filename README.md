@@ -116,3 +116,7 @@ The French course uses the shared Apps assessment engine. Today's lesson automat
 
 ### French answer audit (Next 2026.11.24.6)
 The French learning dashboard now has a private Answer history tab that records exact submitted answers, prompts, expected models, original marking decisions and reasons. The separate learner-scoped history synchronises through the existing Firebase account; no shared learning scores are changed. Earlier score-only entries cannot recover historical typed answers. Corrections for an unfinished independent check stay hidden until completion. PWA cache v16 includes the history module.
+
+
+### French curriculum tracks (Next 2026.11.24.7)
+The existing French course offers three selectable tracks: four original Michaela foundations, thirteen school-focused topics for Sai and six original Unlocking French-inspired units. The course preference is local per learner; Sai defaults to the school track, Adult retains foundations until another track is selected. Each new unit has guided practice, full recall checks and distinct application prompts before/after teaching and after 1, 3, 7 and 28 days, with tracked answer history and a track-specific dashboard. Familiar answers in new contexts are not automatically labelled unseen transfer. Existing learner data and evidence IDs are preserved. PWA cache v17 includes the curriculum files. The book is not reproduced. Exact-match alternatives are curated and real learner outcomes remain to be measured.
