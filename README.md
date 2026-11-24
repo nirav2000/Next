@@ -107,3 +107,8 @@ Incorrect written French submissions are retained verbatim next to the correct a
 
 ### French exact input, word audio and voice settings (Next 2026.11.24.4)
 French answer fields opt out of supported keyboard corrections and mark the exact input value. The visible words in guided models and corrections speak individually, as do Magic 10 words and existing word explorer links. French settings allow previewing and choosing a device-provided voice, saved locally. The 63 core lesson steps and all added corrections remain counted at completion; delayed reviews retain a separate count. Existing learning evidence is preserved. PWA cache v14.
+
+
+### Learning effectiveness dashboard (Next 2026.11.24.5)
+
+The French course uses the shared Apps assessment engine. Today's lesson automatically prioritises due independent checks and error-specific repair, then guides new learning. Baseline and immediate, day 1, 3, 7+ and 28+ observations are kept separate; new combinations are held out from teaching, and unanswered or missed checks do not invent scores. The new dashboard displays actual practice accuracy, independent assessment accuracy, delayed retention, unseen transfer, coverage, response time and structure-level knowledge, plus an optional written-versus-audio exposure pilot. All results use the existing scoped evidence log and Firebase account. Oral retrieval is self-checked; automated marking of written French recognises selected variants, not every possible translation. No causal learning claims or automatic experiment promotion. PWA cache v15 includes all new shared modules. Real longitudinal learning outcomes and signed-in device acceptance remain to be established.
