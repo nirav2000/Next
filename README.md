@@ -103,3 +103,7 @@ French course header continuously alternates English and French, with readable h
 
 ### Answer comparison and keyboard flow (Next 2026.11.24.3)
 Incorrect written French submissions are retained verbatim next to the correct answer in a red feedback row; correct submissions are green and voluntary reveals neutral. The incorrect first attempt is recorded before the correction appears. After marking, Next receives focus and Enter advances only after speech has finished. New writing prompts focus the input. PWA cache v13.
+
+
+### French exact input, word audio and voice settings (Next 2026.11.24.4)
+French answer fields opt out of supported keyboard corrections and mark the exact input value. The visible words in guided models and corrections speak individually, as do Magic 10 words and existing word explorer links. French settings allow previewing and choosing a device-provided voice, saved locally. The 63 core lesson steps and all added corrections remain counted at completion; delayed reviews retain a separate count. Existing learning evidence is preserved. PWA cache v14.
