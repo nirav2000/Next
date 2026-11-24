@@ -1,5 +1,5 @@
 self.APPS_PWA_CONFIG={
-  cacheName:'next-learning-shared-v10',
+  cacheName:'next-learning-shared-v11',
   cachePrefix:'next-learning-',
   defaultStrategy:'network-first',
   precache:['./','./index.html','./styles.css','./notes.css','./app.js','./notes.js','./firebase-config.js','./icon.svg','./manifest.webmanifest','./lessons/catalog.json','./lessons/french-quitter-20260926.json','./lessons/french-animal-opinions-homework-20261005.json','./french.html','https://nirav2000.github.io/Apps/french-teaching/v1/index.js','https://nirav2000.github.io/Apps/french-teaching/v1/auth-context.js','https://nirav2000.github.io/Apps/apps-passkey-auth.js','https://nirav2000.github.io/Apps/french-teaching/v1/data.js','https://nirav2000.github.io/Apps/french-teaching/v1/phonics.js','https://nirav2000.github.io/Apps/french-teaching/v1/lexicon.js','https://nirav2000.github.io/Apps/french-teaching/v1/dictionary.js','https://nirav2000.github.io/Apps/french-teaching/v1/magic10.js','https://nirav2000.github.io/Apps/french-teaching/v1/guided-lessons.js','https://nirav2000.github.io/Apps/french-teaching/v1/guided-ui.js','https://nirav2000.github.io/Apps/french-teaching/v1/style.css','https://nirav2000.github.io/Apps/learning-evidence/v1/index.js','https://nirav2000.github.io/Apps/learning-evidence/v1/firestore-cloud.js']

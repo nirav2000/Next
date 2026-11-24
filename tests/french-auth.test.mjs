@@ -31,7 +31,7 @@ test('the course does not receive or emit a raw passkey token or change evidence
   assert.match(script,/mountFrenchCourse\(\{target:.*connect,signIn,signInGoogle,linkGoogle,signInPasskey,resetPassword,signOut\}\)/);
   assert.doesNotMatch(script,/X-App-Monitor-Session|FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON|private_key/);
   const sw=fs.readFileSync('sw.js','utf8');
-  assert.match(sw,/next-learning-shared-v10/);
+  assert.match(sw,/next-learning-shared-v11/);
   assert.match(sw,/french-teaching\/v1\/auth-context\.js/);
   assert.match(sw,/french-teaching\/v1\/phonics\.js/);
   assert.match(sw,/french-teaching\/v1\/lexicon\.js/);
@@ -88,8 +88,21 @@ test('French v2 assets are offline-ready while old Next and Auth stay unmodified
   for(const name of ['magic10.js','guided-lessons.js','guided-ui.js']){
     assert.ok(sw.includes('/french-teaching/v1/'+name),'PWA must precache '+name);
   }
-  assert.match(html,/style\.css\?v=20261123h/);
-  assert.match(html,/index\.js\?v=20261123h/);
-  assert.match(sw,/next-learning-shared-v10/);
+  assert.match(html,/style\.css\?v=20261124a/);
+  assert.match(html,/index\.js\?v=20261124a/);
+  assert.match(sw,/next-learning-shared-v11/);
   assert.doesNotMatch(html,/FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON|-----BEGIN PRIVATE KEY-----/);
+});
+
+test('French header has a stable accessible link, flag, rolling French label and reduced motion',()=>{
+  const js=fs.readFileSync('app.js','utf8');
+  const css=fs.readFileSync('styles.css','utf8');
+  const index=fs.readFileSync('index.html','utf8');
+  assert.match(js,/href="\.\/french\.html" aria-label="French course — Cours de français"/);
+  assert.match(js,/class="french-flag"/);
+  assert.match(js,/<span lang="fr">Cours de français<\/span>/);
+  assert.match(css,/french-course-link:visited/);
+  assert.match(css,/@keyframes next-french-roll/);
+  assert.match(css,/prefers-reduced-motion:reduce/);
+  assert.match(index,/app\.js\?v=2026\.11\.24\.1/);
 });
