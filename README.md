@@ -99,3 +99,7 @@ The Next header uses its green/neutral palette, a tricolour flag, and a short up
 
 ### French UX refinement (Next 2026.11.24.2)
 French course header continuously alternates English and French, with readable holds, staggered upward rolling letters and a split-flap-style return. Reduced-motion users see a static French label. Shared course updates wait for speech completion before advancing, show English/French on a single responsive row, and replace generic starters with contextual, progressive hints that preserve draft text and track assistance. PWA cache v12. Device speech completion events still require physical iPad acceptance.
+
+
+### Answer comparison and keyboard flow (Next 2026.11.24.3)
+Incorrect written French submissions are retained verbatim next to the correct answer in a red feedback row; correct submissions are green and voluntary reveals neutral. The incorrect first attempt is recorded before the correction appears. After marking, Next receives focus and Enter advances only after speech has finished. New writing prompts focus the input. PWA cache v13.
