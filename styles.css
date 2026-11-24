@@ -6,8 +6,28 @@
 .french-course-link:hover{background:var(--mint)}
 .french-course-link:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 .french-flag{width:19px;height:13px;flex:0 0 19px;border-radius:2px;background:linear-gradient(90deg,#173f91 0 33.333%,#fff 33.333% 66.666%,#e44248 66.666%);box-shadow:0 0 0 1px #18392f22}
-.french-roll{display:block;height:1.3em;overflow:hidden}
-.french-roll-track{display:grid;grid-auto-rows:1.3em;transform:translateY(-50%);animation:next-french-roll 2.1s cubic-bezier(.22,.68,.3,1) both}
-.french-roll-track>span{line-height:1.3}
-@keyframes next-french-roll{0%,42%{transform:translateY(0)}70%,100%{transform:translateY(-50%)}}
-@media(prefers-reduced-motion:reduce){.french-roll-track{animation:none;transform:translateY(-50%)}}
+.french-roll{display:grid;grid-template-columns:minmax(0,1fr);height:1.3em;overflow:hidden;perspective:240px}
+.french-label{grid-area:1/1;display:flex;align-items:center;justify-content:center;line-height:1.3;white-space:nowrap}
+.french-label-fr{pointer-events:none}
+.french-letter{display:inline-block;transform-origin:50% 50%;animation-duration:12s;animation-delay:calc(var(--i)*25ms);animation-iteration-count:infinite;animation-fill-mode:both;animation-timing-function:ease-in-out;backface-visibility:hidden}
+.french-label-en .french-letter{animation-name:next-french-roll-en}
+.french-label-fr .french-letter{animation-name:next-french-roll-fr}
+/* Hold English for about five seconds. Roll upward in a short wave;
+   hold French, then return using a staggered departure-board flip. */
+@keyframes next-french-roll-en{
+  0%,42%{transform:translateY(0) rotateX(0);opacity:1}
+  46%{transform:translateY(-110%) rotateX(0);opacity:0}
+  47%,87%{transform:translateY(0) rotateX(-90deg);opacity:0}
+  91%,100%{transform:translateY(0) rotateX(0);opacity:1}
+}
+@keyframes next-french-roll-fr{
+  0%,42%{transform:translateY(110%) rotateX(0);opacity:0}
+  46%,87%{transform:translateY(0) rotateX(0);opacity:1}
+  91%{transform:translateY(0) rotateX(90deg);opacity:0}
+  92%,100%{transform:translateY(110%) rotateX(0);opacity:0}
+}
+@media(prefers-reduced-motion:reduce){
+ .french-letter{animation:none}
+ .french-label-en{visibility:hidden}
+ .french-label-fr{visibility:visible}
+}

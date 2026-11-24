@@ -31,7 +31,7 @@ test('the course does not receive or emit a raw passkey token or change evidence
   assert.match(script,/mountFrenchCourse\(\{target:.*connect,signIn,signInGoogle,linkGoogle,signInPasskey,resetPassword,signOut\}\)/);
   assert.doesNotMatch(script,/X-App-Monitor-Session|FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON|private_key/);
   const sw=fs.readFileSync('sw.js','utf8');
-  assert.match(sw,/next-learning-shared-v11/);
+  assert.match(sw,/next-learning-shared-v12/);
   assert.match(sw,/french-teaching\/v1\/auth-context\.js/);
   assert.match(sw,/french-teaching\/v1\/phonics\.js/);
   assert.match(sw,/french-teaching\/v1\/lexicon\.js/);
@@ -88,9 +88,9 @@ test('French v2 assets are offline-ready while old Next and Auth stay unmodified
   for(const name of ['magic10.js','guided-lessons.js','guided-ui.js']){
     assert.ok(sw.includes('/french-teaching/v1/'+name),'PWA must precache '+name);
   }
-  assert.match(html,/style\.css\?v=20261124a/);
-  assert.match(html,/index\.js\?v=20261124a/);
-  assert.match(sw,/next-learning-shared-v11/);
+  assert.match(html,/style\.css\?v=20261124b/);
+  assert.match(html,/index\.js\?v=20261124b/);
+  assert.match(sw,/next-learning-shared-v12/);
   assert.doesNotMatch(html,/FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON|-----BEGIN PRIVATE KEY-----/);
 });
 
@@ -100,9 +100,18 @@ test('French header has a stable accessible link, flag, rolling French label and
   const index=fs.readFileSync('index.html','utf8');
   assert.match(js,/href="\.\/french\.html" aria-label="French course — Cours de français"/);
   assert.match(js,/class="french-flag"/);
-  assert.match(js,/<span lang="fr">Cours de français<\/span>/);
+  assert.match(js,/frenchLabel\("Cours de français","fr"\)/);
   assert.match(css,/french-course-link:visited/);
   assert.match(css,/@keyframes next-french-roll/);
   assert.match(css,/prefers-reduced-motion:reduce/);
-  assert.match(index,/app\.js\?v=2026\.11\.24\.1/);
+  assert.match(index,/app\.js\?v=2026\.11\.24\.2/);
+});
+
+test('French course label cycles continuously with two transition styles',()=>{
+ const css=fs.readFileSync('styles.css','utf8');
+ assert.match(css,/animation-duration:12s/);
+ assert.match(css,/animation-iteration-count:infinite/);
+ assert.match(css,/translateY\(-110%\)/);
+ assert.match(css,/rotateX\(-90deg\)/);
+ assert.match(css,/animation-delay:calc\(var\(--i\)\*25ms\)/);
 });
