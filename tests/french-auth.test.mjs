@@ -31,7 +31,7 @@ test('the course does not receive or emit a raw passkey token or change evidence
   assert.match(script,/mountFrenchCourse\(\{target:.*connect,signIn,signInGoogle,linkGoogle,signInPasskey,resetPassword,signOut\}\)/);
   assert.doesNotMatch(script,/X-App-Monitor-Session|FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON|private_key/);
   const sw=fs.readFileSync('sw.js','utf8');
-  assert.match(sw,/next-learning-shared-v15/);
+  assert.match(sw,/next-learning-shared-v16/);
   assert.match(sw,/french-teaching\/v1\/auth-context\.js/);
   assert.match(sw,/french-teaching\/v1\/phonics\.js/);
   assert.match(sw,/french-teaching\/v1\/lexicon\.js/);
@@ -85,12 +85,12 @@ test('missing Worker route is reported without asking the user to unlock their p
 test('French v2 assets are offline-ready while old Next and Auth stay unmodified',()=>{
   const sw=fs.readFileSync('sw.js','utf8');
   const html=fs.readFileSync('french.html','utf8');
-  for(const name of ['magic10.js','guided-lessons.js','guided-ui.js','assessment.js','assessment-ui.js']){
+  for(const name of ['magic10.js','guided-lessons.js','guided-ui.js','assessment.js','assessment-ui.js','answer-history.js']){
     assert.ok(sw.includes('/french-teaching/v1/'+name),'PWA must precache '+name);
   }
-  assert.match(html,/style\.css\?v=20261124e/);
-  assert.match(html,/index\.js\?v=20261124e/);
-  assert.match(sw,/next-learning-shared-v15/);
+  assert.match(html,/style\.css\?v=20261124f/);
+  assert.match(html,/index\.js\?v=20261124f/);
+  assert.match(sw,/next-learning-shared-v16/);
   assert.doesNotMatch(html,/FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON|-----BEGIN PRIVATE KEY-----/);
 });
 
@@ -104,7 +104,7 @@ test('French header has a stable accessible link, flag, rolling French label and
   assert.match(css,/french-course-link:visited/);
   assert.match(css,/@keyframes next-french-roll/);
   assert.match(css,/prefers-reduced-motion:reduce/);
-  assert.match(index,/app\.js\?v=2026\.11\.24\.5/);
+  assert.match(index,/app\.js\?v=2026\.11\.24\.6/);
 });
 
 test('French course label cycles continuously with two transition styles',()=>{
