@@ -128,3 +128,7 @@ Tap a visible French word to pronounce it. Press and hold, or tap the selected w
 
 ### Incremental Unlocking French (Next 2026.11.25.2)
 Twelve new original chapters build French one component at a time. They include the four earlier May school/sailing themes, an extended sailing unit and school-homework companion. The previous six units are available under Earlier Unlocking lessons & progress. New progress IDs are separate; no old evidence is deleted. PWA cache v19 includes the incremental builder. Oral self-checks are unscored, while independent written and delayed checks use the existing learning dashboard.
+
+
+### French personal revision signals (Next 2026.11.25.3)
+The French course now highlights word-aligned differences, fixes false negation comments, and schedules private word revision from spelling/word-form errors, deliberate word audio requests and relative typing hesitation. The Revision signals page shows signal counts, priority, history and next due practice. A short due-word dictation set can precede the next learning activity without interrupting an unfinished lesson. Word-level typing summaries are recorded only in answer fields; raw keystrokes are not saved. Existing assessment scores and learner scopes are unchanged. A confirmed URL-fragment import can add personal words without committing submissions to public source. PWA cache v20 includes the revision module.
