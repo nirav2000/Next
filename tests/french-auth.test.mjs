@@ -31,7 +31,7 @@ test('the course does not receive or emit a raw passkey token or change evidence
   assert.match(script,/mountFrenchCourse\(\{target:.*connect,signIn,signInGoogle,linkGoogle,signInPasskey,resetPassword,signOut\}\)/);
   assert.doesNotMatch(script,/X-App-Monitor-Session|FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON|private_key/);
   const sw=fs.readFileSync('sw.js','utf8');
-  assert.match(sw,/next-learning-shared-v21/);
+  assert.match(sw,/next-learning-shared-v22/);
   assert.match(sw,/french-teaching\/v1\/auth-context\.js/);
   assert.match(sw,/french-teaching\/v1\/phonics\.js/);
   assert.match(sw,/french-teaching\/v1\/lexicon\.js/);
@@ -85,12 +85,12 @@ test('missing Worker route is reported without asking the user to unlock their p
 test('French v2 assets are offline-ready while old Next and Auth stay unmodified',()=>{
   const sw=fs.readFileSync('sw.js','utf8');
   const html=fs.readFileSync('french.html','utf8');
-  for(const name of ['magic10.js','guided-lessons.js','guided-ui.js','assessment.js','assessment-ui.js','answer-history.js','revision-signals.js','adaptive-teaching.js','curriculum-meta.js','sai-curriculum.js','unlocking-curriculum.js','unlocking-builder.js','curriculum-assessments.js']){
+  for(const name of ['magic10.js','guided-lessons.js','guided-ui.js','assessment.js','assessment-ui.js','answer-history.js','revision-signals.js','adaptive-teaching.js','study-timing.js','curriculum-meta.js','sai-curriculum.js','unlocking-curriculum.js','unlocking-builder.js','curriculum-assessments.js']){
     assert.ok(sw.includes('/french-teaching/v1/'+name),'PWA must precache '+name);
   }
-  assert.match(html,/style\.css\?v=20261125d/);
-  assert.match(html,/index\.js\?v=20261125d/);
-  assert.match(sw,/next-learning-shared-v21/);
+  assert.match(html,/style\.css\?v=20261125e/);
+  assert.match(html,/index\.js\?v=20261125e/);
+  assert.match(sw,/next-learning-shared-v22/);
   assert.doesNotMatch(html,/FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON|-----BEGIN PRIVATE KEY-----/);
 });
 
@@ -104,7 +104,7 @@ test('French header has a stable accessible link, flag, rolling French label and
   assert.match(css,/french-course-link:visited/);
   assert.match(css,/@keyframes next-french-roll/);
   assert.match(css,/prefers-reduced-motion:reduce/);
-  assert.match(index,/app\.js\?v=2026\.11\.25\.4/);
+  assert.match(index,/app\.js\?v=2026\.11\.25\.5/);
 });
 
 test('French course label cycles continuously with two transition styles',()=>{
@@ -117,3 +117,6 @@ test('French course label cycles continuously with two transition styles',()=>{
 });
 
 test('learning effectiveness shared assessment utilities are precached',()=>{assert.match(fs.readFileSync('sw.js','utf8'),/learning-evidence\/v1\/assessment\.js/);});
+
+
+test('French device reminders open the course and the countdown module is offline-ready',()=>{const sw=fs.readFileSync('sw.js','utf8');assert.match(sw,/study-timing\.js/);assert.match(sw,/nextFrench/);assert.match(sw,/\.\/french\.html/);assert.match(script,/serviceWorker\.register\('\.\/sw\.js'\)/);});

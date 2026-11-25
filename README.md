@@ -136,3 +136,7 @@ The French course now highlights word-aligned differences, fixes false negation 
 
 ### Continuous adaptive French teaching (Next 2026.11.25.4)
 Today's guided lesson now interleaves learner-specific spelling, listening and contextual recall practice, using cumulative signals, recent activity, session and unit context. Positive independent recall reduces revision priority. Adaptive insertions preserve the original curriculum sequence and do not affect formal assessment scores or expose reserved assessment sentences. Plans, outcomes and revision history persist in the existing private learner-scoped answer audit. The Revision signals tab explains individual teaching decisions. Routine Firebase and retry-saving text is hidden; actual save failures remain visible. Cache v21 includes the new adaptive teaching module.
+
+
+### Timed French practice (Next 2026.11.25.5)
+The lesson completion screen requires a five-minute break before further practice in the selected course. The deadline survives refresh and is based on synced teaching evidence. The course flags overdue scheduled checks and word revisions, with optional permission-gated device alerts while running; closed-app background delivery is not installed. The five-minute minimum and overdue grace periods are initial teaching defaults. The PWA v22 cache includes study-timing.js and French reminders link back to the French course.
