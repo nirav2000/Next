@@ -120,3 +120,7 @@ The French learning dashboard now has a private Answer history tab that records 
 
 ### French curriculum tracks (Next 2026.11.24.7)
 The existing French course offers three selectable tracks: four original Michaela foundations, thirteen school-focused topics for Sai and six original Unlocking French-inspired units. The course preference is local per learner; Sai defaults to the school track, Adult retains foundations until another track is selected. Each new unit has guided practice, full recall checks and distinct application prompts before/after teaching and after 1, 3, 7 and 28 days, with tracked answer history and a track-specific dashboard. Familiar answers in new contexts are not automatically labelled unseen transfer. Existing learner data and evidence IDs are preserved. PWA cache v17 includes the curriculum files. The book is not reproduced. Exact-match alternatives are curated and real learner outcomes remain to be measured.
+
+
+### Unified French word controls (Next 2026.11.25.1)
+Tap a visible French word to pronounce it. Press and hold, or tap the selected word's Explore action, to open Word Explorer. Guided lessons, corrections and Magic 10 share the same interaction as the knowledge grid and workshop. Completed multiple-choice answers support word exploration and whole-answer replay. Unanswered independent checks remain free of dictionary prompts. The existing learner progress and history remain unchanged. PWA cache v18 refreshes the shared course assets.
