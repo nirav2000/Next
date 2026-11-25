@@ -124,3 +124,7 @@ The existing French course offers three selectable tracks: four original Michael
 
 ### Unified French word controls (Next 2026.11.25.1)
 Tap a visible French word to pronounce it. Press and hold, or tap the selected word's Explore action, to open Word Explorer. Guided lessons, corrections and Magic 10 share the same interaction as the knowledge grid and workshop. Completed multiple-choice answers support word exploration and whole-answer replay. Unanswered independent checks remain free of dictionary prompts. The existing learner progress and history remain unchanged. PWA cache v18 refreshes the shared course assets.
+
+
+### Incremental Unlocking French (Next 2026.11.25.2)
+Twelve new original chapters build French one component at a time. They include the four earlier May school/sailing themes, an extended sailing unit and school-homework companion. The previous six units are available under Earlier Unlocking lessons & progress. New progress IDs are separate; no old evidence is deleted. PWA cache v19 includes the incremental builder. Oral self-checks are unscored, while independent written and delayed checks use the existing learning dashboard.
