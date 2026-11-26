@@ -156,3 +156,7 @@ Revision signals now displays the actual private learner's priority bars, signal
 
 ### Consistent French learning controls and timed breaks (Next 2026.11.26.4)
 French lesson continuation uses explicit default-action attributes and focus restoration, with Enter fallback. Spoken models, reveals and corrections use semantic playback events and wait before advancing. Pause is separated on the right. The five-minute learner-wide French rest deadline is derived from recorded teaching completion, survives reload, shows the analogue countdown, and is enforced across chapter and course navigation. Existing learner records and assessment rules are unchanged. Cache v26 refreshes the shared module.
+
+
+### Animated audio wait and analogue break card (Next 2026.11.26.5)
+Continuation leaves the current question visible and displays a disabled Waiting for audio to finish… control with sequentially pulsing dots until speech and reinforcement end. The existing five-minute evidence-anchored break is displayed with the approved dark card, teal clock ring and hand, digital time and full-width locked button. Cache v27 refreshes the shared French module. Existing learning records and timing rules are preserved.
