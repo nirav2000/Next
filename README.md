@@ -152,3 +152,7 @@ Retain the unified Today recommendation alongside the original course selection,
 
 ### Learning profile chart and targeted repair feedback (Next 2026.11.26.3)
 Revision signals now displays the actual private learner's priority bars, signal counts and next planned or due practice. Targeted Repair and Adaptive retrieval practice keep the submitted French and correct model visible for comparison on both successful and unsuccessful attempts. Word and sentence audio remain available. Formal check answers remain hidden until the check is complete. Existing sections and scoring are unchanged. Cache v25 refreshes the shared French module.
+
+
+### Consistent French learning controls and timed breaks (Next 2026.11.26.4)
+French lesson continuation uses explicit default-action attributes and focus restoration, with Enter fallback. Spoken models, reveals and corrections use semantic playback events and wait before advancing. Pause is separated on the right. The five-minute learner-wide French rest deadline is derived from recorded teaching completion, survives reload, shows the analogue countdown, and is enforced across chapter and course navigation. Existing learner records and assessment rules are unchanged. Cache v26 refreshes the shared module.
