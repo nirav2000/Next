@@ -31,7 +31,7 @@ test('the course does not receive or emit a raw passkey token or change evidence
   assert.match(script,/mountFrenchCourse\(\{target:.*connect,signIn,signInGoogle,linkGoogle,signInPasskey,resetPassword,signOut\}\)/);
   assert.doesNotMatch(script,/X-App-Monitor-Session|FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON|private_key/);
   const sw=fs.readFileSync('sw.js','utf8');
-  assert.match(sw,/next-learning-shared-v27/);
+  assert.match(sw,/next-learning-shared-v28/);
   assert.match(sw,/french-teaching\/v1\/auth-context\.js/);
   assert.match(sw,/french-teaching\/v1\/phonics\.js/);
   assert.match(sw,/french-teaching\/v1\/lexicon\.js/);
@@ -88,9 +88,9 @@ test('French v2 assets are offline-ready while old Next and Auth stay unmodified
   for(const name of ['magic10.js','guided-lessons.js','guided-ui.js','assessment.js','assessment-ui.js','answer-history.js','revision-signals.js','adaptive-teaching.js','study-timing.js','curriculum-meta.js','sai-curriculum.js','unlocking-curriculum.js','unlocking-builder.js','curriculum-assessments.js']){
     assert.ok(sw.includes('/french-teaching/v1/'+name),'PWA must precache '+name);
   }
-  assert.match(html,/style\.css\?v=20261126e/);
-  assert.match(html,/index\.js\?v=20261126e/);
-  assert.match(sw,/next-learning-shared-v27/);
+  assert.match(html,/style\.css\?v=20261126f/);
+  assert.match(html,/index\.js\?v=20261126f/);
+  assert.match(sw,/next-learning-shared-v28/);
   assert.doesNotMatch(html,/FIREBASE_ADMIN_SERVICE_ACCOUNT_JSON|-----BEGIN PRIVATE KEY-----/);
 });
 

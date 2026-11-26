@@ -160,3 +160,7 @@ French lesson continuation uses explicit default-action attributes and focus res
 
 ### Animated audio wait and analogue break card (Next 2026.11.26.5)
 Continuation leaves the current question visible and displays a disabled Waiting for audio to finish… control with sequentially pulsing dots until speech and reinforcement end. The existing five-minute evidence-anchored break is displayed with the approved dark card, teal clock ring and hand, digital time and full-width locked button. Cache v27 refreshes the shared French module. Existing learning records and timing rules are preserved.
+
+### French marking and precise feedback — 26 November 2026
+
+Shared written-answer comparison now accepts harmless capitalisation, spacing, quotation and punctuation variations without ignoring French accents, apostrophes, word order, grammar or number punctuation. Personal revision uses the same marker as guided and assessment tasks. Incorrect feedback highlights the differing letters or words and explains the comparison; correct formatting variants remain correct. Revision controls say word, phrase or sentence as appropriate. Earlier false-negative manual revision events caused solely by formatting are reinterpreted for scheduling, without rewriting their immutable answer history or original assessment scores. PWA cache v28 and French asset version 20261126f refresh the shared modules. Existing audio, learning sequence, accounts and stored data are preserved. Live signed-in device acceptance remains separate from source tests.
