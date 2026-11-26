@@ -148,3 +148,7 @@ A single Continue learning action recommends due independent checks before revis
 
 ### French overview restoration (Next 2026.11.26.2)
 Retain the unified Today recommendation alongside the original course selection, revision, guided lesson library, reference resources, rapid oral practice and account sections. Restore direct menu access and the overdue practice action; manual practice works even with an overdue check, while the five-minute rest lock remains. Only learning effectiveness/mastery is moved off the overview and remains in the dashboard. Cache v24 refreshes the French interface.
+
+
+### Learning profile chart and targeted repair feedback (Next 2026.11.26.3)
+Revision signals now displays the actual private learner's priority bars, signal counts and next planned or due practice. Targeted Repair and Adaptive retrieval practice keep the submitted French and correct model visible for comparison on both successful and unsuccessful attempts. Word and sentence audio remain available. Formal check answers remain hidden until the check is complete. Existing sections and scoring are unchanged. Cache v25 refreshes the shared French module.
