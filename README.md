@@ -180,3 +180,7 @@ Unlocking French now distinguishes English -ing cognates from -ant/-ent cognates
 ### Meaning-first Unlocking French — 26 November 2026
 
 Twelve revised pattern groups and 73 translation questions clearly label English and French, distinguish direct translation from deliberate French word-building, and put technical grammar in optional explanations. The -ation/-é pattern explicitly preserves noun meaning before teaching a new action word; e.g. decoration/décoration versus decorated/décoré. French accents and changed endings are highlighted separately. A fresh guided recap of pattern content version 2 precedes spaced recall, without deleting history or resetting core lesson progress. All 1,135 existing core step IDs and French assessment targets are preserved; learner-facing descriptions use simpler language. PWA cache v32, asset version 20261126j.
+
+### Simpler Unlocking French — 26 November 2026
+
+Restored the spoken, one-building-block-at-a-time approach. Continue learning no longer routes automatically to separate grammar lessons. Grammar is a collapsed contextual disclosure, with a single short example and optional further details. The searchable reference library uses collapsed rows; optional spaced practice shows one phrase at a time and introduces unfamiliar bilingual examples before recall. All 1,135 core teaching steps and assessment banks remain unchanged. PWA cache v33 and asset version 20261126k.
