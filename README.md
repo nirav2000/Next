@@ -144,3 +144,7 @@ The lesson completion screen requires a five-minute break before further practic
 
 ### Unified Today learning path (Next 2026.11.26.1)
 A single Continue learning action recommends due independent checks before revision, targeted corrections, a bounded personal revision batch, guided teaching, the evidence-anchored rest, after-teaching recall and optional oral practice. A finished learning session offers an explicit next session. Explore contains manual chapters and reference tools; dashboard/history and settings remain separate. Existing evidence and authentication remain unchanged. Session preferences are scoped locally per learner and course. PWA cache v23 refreshes the shared interface.
+
+
+### French overview restoration (Next 2026.11.26.2)
+Retain the unified Today recommendation alongside the original course selection, revision, guided lesson library, reference resources, rapid oral practice and account sections. Restore direct menu access and the overdue practice action; manual practice works even with an overdue check, while the five-minute rest lock remains. Only learning effectiveness/mastery is moved off the overview and remains in the dashboard. Cache v24 refreshes the French interface.
