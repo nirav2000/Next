@@ -184,3 +184,7 @@ Twelve revised pattern groups and 73 translation questions clearly label English
 ### Simpler Unlocking French — 26 November 2026
 
 Restored the spoken, one-building-block-at-a-time approach. Continue learning no longer routes automatically to separate grammar lessons. Grammar is a collapsed contextual disclosure, with a single short example and optional further details. The searchable reference library uses collapsed rows; optional spaced practice shows one phrase at a time and introduces unfamiliar bilingual examples before recall. All 1,135 core teaching steps and assessment banks remain unchanged. PWA cache v33 and asset version 20261126k.
+
+### Clear review timing and session completion — 26 November 2026
+
+Today identifies the next formal review by chapter, recall stage, purpose and availability time. Completed settling breaks and completed activities have ticks; skipped and partially completed practice is distinguished from completed practice. Older ambiguous session flags are not treated as proof of completion. Formal review intervals, saved progress and assessment banks are unchanged. PWA cache v34; French asset version 20261126l.
