@@ -140,3 +140,7 @@ Today's guided lesson now interleaves learner-specific spelling, listening and c
 
 ### Timed French practice (Next 2026.11.25.5)
 The lesson completion screen requires a five-minute break before further practice in the selected course. The deadline survives refresh and is based on synced teaching evidence. The course flags overdue scheduled checks and word revisions, with optional permission-gated device alerts while running; closed-app background delivery is not installed. The five-minute minimum and overdue grace periods are initial teaching defaults. The PWA v22 cache includes study-timing.js and French reminders link back to the French course.
+
+
+### Unified Today learning path (Next 2026.11.26.1)
+A single Continue learning action recommends due independent checks before revision, targeted corrections, a bounded personal revision batch, guided teaching, the evidence-anchored rest, after-teaching recall and optional oral practice. A finished learning session offers an explicit next session. Explore contains manual chapters and reference tools; dashboard/history and settings remain separate. Existing evidence and authentication remain unchanged. Session preferences are scoped locally per learner and course. PWA cache v23 refreshes the shared interface.
