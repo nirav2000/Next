@@ -204,3 +204,7 @@ Learning dashboard now links to private Session journey diagnostics: the rendere
 ### Adaptive Unlocking French — 27 November 2026
 
 The existing twelve chapters and historical assessment references are retained. Four integrated expansions add everyday actions, English–French word discovery, parent–child dialogue, listening to replies, and longer connected sentences about sailing weekends. Four-pile speaking workshops provide 720 combinations. Explicit oral self-checks adapt the amount of identical repetition; skipped drills have non-scoring resolution records rather than fabricated learning exposure. The roadmap separates possible sentence combinations from actual model coverage and independent recall. Course 1.1.0; asset version 20261127d; cache v38.
+
+
+### Evidence-aware French practice — 27 November 2026
+French asset release 20261127e, PWA cache v39. The shared Apps French engine uses existing learner-specific answer history to avoid redundant guided production, coordinate revision and oral practice, and favour varied taught sentences. Protected assessments, delayed retention, learner identity and historical records remain unchanged. See Apps/french-teaching/v1/README.md for the policy and test contract. Standing repository instructions are in AGENTS.md.
