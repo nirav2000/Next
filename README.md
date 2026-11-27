@@ -208,3 +208,8 @@ The existing twelve chapters and historical assessment references are retained. 
 
 ### Evidence-aware French practice — 27 November 2026
 French asset release 20261127e, PWA cache v39. The shared Apps French engine uses existing learner-specific answer history to avoid redundant guided production, coordinate revision and oral practice, and favour varied taught sentences. Protected assessments, delayed retention, learner identity and historical records remain unchanged. See Apps/french-teaching/v1/README.md for the policy and test contract. Standing repository instructions are in AGENTS.md.
+
+
+### Context-sensitive French revision — 27 November 2026
+
+French asset release `20261127f`, PWA cache v40. The Unlocking French adaptive engine groups overlapping weak spots, filters incomplete automatic fragments, distinguishes likely keyboard slips from knowledge gaps without altering marks, requires meaningful sentence variation, focuses supported corrections on the missing language, and caps interruptions of new teaching. Older-chapter inserts are limited to one per session after eight core steps; all inserts are at least six steps apart and capped at three per session. Reusable grammatical frames and protected assessments are retained. Shared engine commit `40a516914058b79eba0b5f7f23e43b6723a59538`. See Apps French teaching README for the policy and regression contract.
