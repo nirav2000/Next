@@ -188,3 +188,7 @@ Restored the spoken, one-building-block-at-a-time approach. Continue learning no
 ### Clear review timing and session completion — 26 November 2026
 
 Today identifies the next formal review by chapter, recall stage, purpose and availability time. Completed settling breaks and completed activities have ticks; skipped and partially completed practice is distinguished from completed practice. Older ambiguous session flags are not treated as proof of completion. Formal review intervals, saved progress and assessment banks are unchanged. PWA cache v34; French asset version 20261126l.
+
+### Learning roadmap — 27 November 2026
+
+Added Learning roadmap: My journey, Compare courses, Detailed curriculum and Course analysis. Expand each chapter and numbered teaching step; compare actual tracks and remaining core steps; adjust minutes/day and seconds/step for illustrative forecasts. Adult priorities now focus on conversations with parents and children around sailing weekends, changing and rigging, meals, timings and social plans. There are 57 reference targets in seven proposed situation groups plus short two-way exchanges. Exact curriculum coverage is tracked separately from proposed additions. No core lessons, progress or assessment banks were changed. Precache includes roadmap.js, cache v35, French asset version 20261127a. Direct route: french.html#roadmap.
